@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "deploy": "node tools/buildAndDeploy",
     "test": "echo \"Tests executed !!\" && exit 0"
   },
   "repository": {
