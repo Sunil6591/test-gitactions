@@ -21,13 +21,15 @@ jobs:
     - run: npm ci
     - run: npm test
     - run: npm run build
-    - run: cp package.json dist/package.json
-    - run: ls
+    - run: cp -R node_modules/* dist/node_modules
     - run: ls -l dist/
     - id: 'zipping'
       env:
-        FILENAME: ${{ github.repository }}
-      run: echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+        FILENAME: echo ${{ github.repository }} | awk -F/ '{print $NF}'
+    - run: echo $FILENAME
+    - run: cd dist
+    - run: zip $FILENAME *
+    - run: echo "filename=$FILENAME" >> $GITHUB_OUTPUT
     - id: 'deploy_s3'
       run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
   deploy:
