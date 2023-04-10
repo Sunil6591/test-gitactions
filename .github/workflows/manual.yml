@@ -27,9 +27,12 @@ jobs:
     - id: 'zipping'
       env:
         FILENAME: echo '${{ github.repository }}' | awk -F/ '{print $NF}'
-      run: echo $FILENAME
-    - run: zip test.zip dist/*
+      run: echo '$FILENAME'
+    - id: zipping 2
+      working-directory: ./dist
+      run: zip test.zip *
     - run: ls -l dist/
+    - run: ls -l
     - run: echo "filename=$FILENAME" >> $GITHUB_OUTPUT
     - id: 'deploy_s3'
       run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
