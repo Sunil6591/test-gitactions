@@ -1,5 +1,4 @@
-name: Manual deployment
-
+name: IATA manual deployment
 on:
   workflow_dispatch:
     inputs:
@@ -9,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.zipping.outputs.filename }}
+      output2: ${{ steps.deploy_s3.outputs.s3Path }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -16,5 +18,18 @@ jobs:
         node-version: '10'
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
     - run: npm test
+    - run: npm run build --if-present
+    - id: 'zipping'
+      run: echo "filename=test.zip"
+    - id: 'deploy_s3'
+      run: echo "s3Path=s3//test.zip"
+    - 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - env:
+          OUTPUT1: ${{needs.build.outputs.output1}}
+          OUTPUT2: ${{needs.build.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
