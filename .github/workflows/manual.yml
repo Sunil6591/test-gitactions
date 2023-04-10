@@ -29,6 +29,6 @@ jobs:
     needs: build
     steps:
       - env:
-          OUTPUT1: ${{needs.build.outputs.output1}}
-          OUTPUT2: ${{needs.build.outputs.output2}}
+          OUTPUT1: ${{needs.build.outputs.filename}}
+          OUTPUT2: ${{needs.build.outputs.s3Path}}
         run: echo "$OUTPUT1 $OUTPUT2"
