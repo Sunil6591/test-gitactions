@@ -28,7 +28,7 @@ jobs:
       env:
         FILENAME: echo '${{ github.repository }}' | awk -F/ '{print $NF}'
       run: echo $FILENAME
-    - run: cd dist && zip $FILENAME *
+    - run: zip test.zip dist/*
     - run: ls -l dist/
     - run: echo "filename=$FILENAME" >> $GITHUB_OUTPUT
     - id: 'deploy_s3'
