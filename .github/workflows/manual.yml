@@ -6,7 +6,7 @@ on:
         description: 'IATA'
         required: true
       onlyForBox:
-        description: 'Only need airtifacts to be deployed on box'
+        description: 'Only for box'
         type: boolean
         default: true
         required: true
@@ -18,7 +18,6 @@ jobs:
       filename: ${{ steps.zipping.outputs.filename }}
       s3Path: ${{ steps.deploy_s3.outputs.s3Path }}
     steps:
-    - run: echo ${{ inputs.onlyForBox }}
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
@@ -53,6 +52,7 @@ jobs:
     - id: 'deploy_s3'
       run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
   deploy:
+    if: ${{ inputs.onlyForBox }} == false
     name: Deploying for ${{ inputs.iata }} 
     runs-on: ubuntu-latest
     needs: build
