@@ -5,6 +5,11 @@ on:
       iata:
         description: 'IATA'
         required: true
+      onlyForBox:
+        description: 'Only need airtifacts to be deployed on box'
+        type: boolean
+        default: true
+        required: true
 jobs:
   build:
     name: Building for ${{ inputs.iata }} 
@@ -13,6 +18,7 @@ jobs:
       filename: ${{ steps.zipping.outputs.filename }}
       s3Path: ${{ steps.deploy_s3.outputs.s3Path }}
     steps:
+    - run: echo ${{ inputs.onlyForBox }}
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
