@@ -42,7 +42,7 @@ jobs:
     - name: Upload zip file
       uses: actions/upload-artifact@v3
       with:
-        name: bundle.zip
+        name: bundle
         path: |
           dist/test.zip
           dist/md5.txt
