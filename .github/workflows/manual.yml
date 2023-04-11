@@ -33,7 +33,7 @@ jobs:
       run: zip test.zip *
     - name: Calc md5
       working-directory: ./dist
-      run: md5 test.zip | awk '{print $NF}' >> md5.txt
+      run: md5sum test.zip | awk '{print $1}' >> md5.txt
     - name: Upload zip file
       uses: actions/upload-artifact@v3
       with:
