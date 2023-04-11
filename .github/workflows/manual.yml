@@ -8,7 +8,7 @@ on:
       onlyForBox:
         description: 'Only for box'
         type: boolean
-        default: true
+        default: false
         required: true
 jobs:
   build:
