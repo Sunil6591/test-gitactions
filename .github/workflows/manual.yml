@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - run: echo ${{ inputs.onlyForBox }}
       - env:
           OUTPUT1: ${{needs.build.outputs.filename}}
           OUTPUT2: ${{needs.build.outputs.s3Path}}
