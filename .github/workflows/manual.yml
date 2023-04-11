@@ -26,7 +26,7 @@ jobs:
     - run: ls -l dist/
     - id: 'zipping'
       env:
-        FILENAME: echo '${{ github.repository }}' | awk -F/ '{print $NF}'
+        FILENAME: echo ${{ github.repository }} | awk -F/ '{print $NF}'
       run: echo $FILENAME
     - id: zipping2
       working-directory: ./dist
