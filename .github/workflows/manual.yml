@@ -32,10 +32,10 @@ jobs:
       working-directory: ./dist
       run: zip test.zip *
     - name: Upload zip file
-        uses: actions/upload-artifact@v3
-        with:
-          name: airtifact
-          path: dist/test.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: airtifact
+        path: dist/test.zip
     - run: ls -l dist/
     - run: ls -l
     - run: echo "filename=$FILENAME" >> $GITHUB_OUTPUT
