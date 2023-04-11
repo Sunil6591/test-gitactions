@@ -27,14 +27,17 @@ jobs:
     - id: 'zipping'
       env:
         FILENAME: echo '${{ github.repository }}' | awk -F/ '{print $NF}'
-      run: echo '${FILENAME}'
+      run: echo ${{ FILENAME }}
     - id: zipping2
       working-directory: ./dist
       run: zip test.zip *
+    - name: Calc md5
+      working-directory: ./dist
+      run: md5 test.zip | awk '{print $NF}' >> md5.txt
     - name: Upload zip file
       uses: actions/upload-artifact@v3
       with:
-        name: airtifact
+        name: bundle.zip
         path: dist/test.zip
     - run: ls -l dist/
     - run: ls -l
