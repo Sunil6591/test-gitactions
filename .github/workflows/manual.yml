@@ -61,7 +61,7 @@ jobs:
     - run: ls /
     - run: pwd
     - run: npm run deployNew
-    - run: ls /
+    - run: ls -R
     - run: pwd
     - name: Upload pax client airtifacts
       uses: actions/upload-artifact@v3
