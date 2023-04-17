@@ -7,11 +7,11 @@ prepareBuildFolder() {
 
 finishBuild() {
   echo "Creating build archive ..."
-  cd $BUILD_TMP_DIR
+#   cd $BUILD_TMP_DIR
   pwd
   zip --quiet --recurse-paths test.zip *
   pwd
-  ls -lh $BUILD_TMP_DIR
+  ls -lh
 }
 
 # # ===================== Start Build ======================
