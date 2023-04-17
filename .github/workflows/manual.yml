@@ -61,6 +61,12 @@ jobs:
     - run: ls /
     - run: npm run deployNew
     - run: ls /
+    - name: Upload pax client airtifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: |
+          tmp/**/*.zip
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
