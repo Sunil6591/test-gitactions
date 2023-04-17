@@ -51,6 +51,7 @@ jobs:
     # - run: echo "filename=$(echo '${{ github.repository }}' | awk -F/ '{print $NF}')" >> $GITHUB_OUTPUT
     # - id: 'deploy_s3'
     #   run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
+    runs-on: ubuntu-latest
     steps:
     - run: ls /
     - run: npm run deployNew
