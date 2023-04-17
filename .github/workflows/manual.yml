@@ -92,8 +92,8 @@ jobs:
       PACKAGE_VERSION: ${{needs.build.outputs.packageVersion}}
       ZIP_FILENAME: ${{needs.build.outputs.zipFileName}}
     steps:
-    - run: printenv
     - run: echo ${{ env.ZIP_FILENAME }}
+    - run: echo ${{ env.PACKAGE_VERSION }}
 
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
