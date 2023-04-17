@@ -52,7 +52,10 @@ jobs:
     # - id: 'deploy_s3'
     #   run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
     runs-on: ubuntu-latest
+    env:
+      PACKAGE_VERSION: $(cat ${PACKAGE_JSON_PATH}/package.json | jq '.version' | tr -d '"')
     steps:
+    - run: echo ${{ env.PACKAGE_VERSION }}
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
