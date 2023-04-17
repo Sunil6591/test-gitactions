@@ -1,0 +1,19 @@
+name: Bulk IATA manual deployment
+on:
+  workflow_dispatch:
+    inputs:
+      iata:
+        description: 'Comman separated IATAs'
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '10'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test

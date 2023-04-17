@@ -53,6 +53,11 @@ jobs:
     #   run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '10'
+        cache: 'npm'
     - run: ls /
     - run: npm run deployNew
     - run: ls /
