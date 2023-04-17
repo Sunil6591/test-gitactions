@@ -76,6 +76,10 @@ jobs:
         name: artifacts
         path: |
           ./artifacts/**/*.zip
+  print:
+    steps:
+    - run: echo ${{ env.ZIP_FILENAME }}
+
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
