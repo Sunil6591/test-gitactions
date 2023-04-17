@@ -26,6 +26,7 @@ BUILD_TMP_DIR=artifacts
 PROJECT_DIR=$(dirname $PWD)
 pwd
 echo $PACKAGE_VERSION
+echo $ZIP_FILENAME
 printenv
 
 prepareBuildFolder
