@@ -18,7 +18,9 @@ finishBuild() {
 # ALERTC='\033[33;5;7m'
 # SUCCESSC='\033[0;32m'
 # NC='\033[0m'
-BUILD_TMP_DIR=$(mktemp -d)
+mkdir artifacts
+BUILD_TMP_DIR=artifacts
+pwd
 
 prepareBuildFolder
 finishBuild
