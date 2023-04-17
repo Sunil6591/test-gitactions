@@ -59,6 +59,7 @@ jobs:
         node-version: '10'
         cache: 'npm'
     - run: ls /
+    - run: pwd
     - run: npm run deployNew
     - run: ls /
     - run: pwd
@@ -67,7 +68,7 @@ jobs:
       with:
         name: artifacts
         path: |
-          test.zip
+          artifacts/test.zip
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
