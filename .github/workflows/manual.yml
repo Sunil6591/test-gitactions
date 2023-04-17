@@ -68,7 +68,7 @@ jobs:
       with:
         name: artifacts
         path: |
-          artifacts/test.zip
+          ./tools/artifacts/test.zip
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
