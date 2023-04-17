@@ -66,9 +66,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: artifacts
-        working-directory: ./artifacts
         path: |
-          *.zip
+          test.zip
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
