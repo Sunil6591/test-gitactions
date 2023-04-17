@@ -77,6 +77,7 @@ jobs:
         path: |
           ./artifacts/**/*.zip
   print:
+    runs-on: ubuntu-latest
     steps:
     - run: echo ${{ env.ZIP_FILENAME }}
 
