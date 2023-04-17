@@ -61,15 +61,15 @@ jobs:
     - run: ls /
     - run: npm run deployNew
     - run: ls /
-    - run: ls -l tmp/
-    - run: ls -l tmp/**
-    - run: ls -R tmp
+    - run: ls -l /tmp/
+    - run: ls -l /tmp/**
+    - run: ls -R /tmp
     - name: Upload pax client airtifacts
       uses: actions/upload-artifact@v3
       with:
         name: artifacts
         path: |
-          tmp/**/*.zip
+          /tmp/**/*.zip
   # deploy:
   #   name: Deploying for ${{ inputs.iata }} 
   #   if: inputs.onlyForBox == false
