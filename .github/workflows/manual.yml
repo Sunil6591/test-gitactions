@@ -52,6 +52,9 @@ jobs:
     # - id: 'deploy_s3'
     #   run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
     runs-on: ubuntu-latest
+    outputs:
+      packageVersion: ${{ steps.version.outputs.build }}
+      zipFileName: ${{ steps.zipFileName.outputs.build }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -76,10 +79,19 @@ jobs:
         name: artifacts
         path: |
           ./artifacts/**/*.zip
+    - name: Set version output
+      id: version
+      run: echo "build=${{ env.PACKAGE_VERSION }}" >> "$GITHUB_OUTPUT"
+    - name: Set zip file output
+      id: zipFileName
+      run: echo "build=${{ env.ZIP_FILENAME }}" >> "$GITHUB_OUTPUT"
   print:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - env:
+      PACKAGE_VERSION: ${{needs.build.outputs.packageVersion}}
+      ZIP_FILENAME: ${{needs.build.outputs.zipFileName}}
     - run: printenv
     - run: echo ${{ env.ZIP_FILENAME }}
 
