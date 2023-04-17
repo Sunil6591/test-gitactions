@@ -25,6 +25,8 @@ mkdir ../artifacts
 BUILD_TMP_DIR=artifacts
 PROJECT_DIR=$(dirname $PWD)
 pwd
+echo $PACKAGE_VERSION
+printenv
 
 prepareBuildFolder
 finishBuild
