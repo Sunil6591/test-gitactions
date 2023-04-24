@@ -1,4 +1,4 @@
-name: IATA manual deployment ${{ inputs.iata }}
+name: IATA manual deployment
 on:
   workflow_dispatch:
     inputs:
