@@ -10,6 +10,9 @@ on:
         type: boolean
         default: false
         required: true
+env:
+  ENV1: ${{ secrets.TEST }}
+  ENV2: ${{ vars.TEST2 }}
 jobs:
   build:
     # name: Building for ${{ inputs.iata }} 
@@ -57,8 +60,8 @@ jobs:
       zipFileName: ${{ steps.zipFileName.outputs.build }}
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ secrets.TEST }}
-      - run: echo ${{ vars.TEST2 }}
+      - run: echo ${{ env.TEST }}
+      - run: echo ${{ env.TEST2 }}
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
