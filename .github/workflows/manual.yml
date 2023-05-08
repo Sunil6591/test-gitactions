@@ -63,6 +63,8 @@ jobs:
       - run: echo ${{ env.TEST }}
       - run: echo ${{ env.TEST2 }}
       - uses: mikepenz/release-changelog-builder-action@main
+        env:
+          GITHUB_TOKEN: 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
         id: release_notes
         with:
           fromTag: "v1.0.0"
