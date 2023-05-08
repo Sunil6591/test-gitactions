@@ -26,7 +26,7 @@ jobs:
         run: git checkout -b release/${{ env.RELEASE_VERSION }} develop # TODO remove hardcoding and get default branch
       - name: Push release branch
         run: |
-          git pull
+          git pull origin develop
           git push origin release/${{ env.RELEASE_VERSION }}
       
       
