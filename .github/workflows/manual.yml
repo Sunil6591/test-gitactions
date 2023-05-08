@@ -62,11 +62,25 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo ${{ env.TEST }}
       - run: echo ${{ env.TEST2 }}
-      - uses: mikepenz/release-changelog-builder-action@main
+      - uses: mikepenz/release-changelog-builder-action@@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         id: release_notes
         with:
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
+              "categories": [
+                {
+                    "title": "## 💬 Other",
+                    "labels": ["other"]
+                },
+                {
+                    "title": "## 📦 Dependencies",
+                    "labels": ["dependencies"]
+                }
+              ]
+            }
           fromTag: "v1.0.0"
           toTag: "main"
           commitMode: true
@@ -76,7 +90,7 @@ jobs:
       - run: echo ${{steps.release_notes.outputs.changed_files}}
       - run: echo ${{steps.release_notes.outputs.changes}}
       - run: echo ${{steps.release_notes.outputs.changelog}}
-      - run: cat CHANGELOG.md
+      - run: ls -l
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
