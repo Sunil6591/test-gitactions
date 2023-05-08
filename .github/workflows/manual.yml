@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo ${{ env.TEST }}
       - run: echo ${{ env.TEST2 }}
-      - run: git log v1.0.0... --pretty=format:%h %ad
+      - run: git log v1.0.0 --pretty=format:%h %ad
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
