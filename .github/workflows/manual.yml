@@ -89,7 +89,7 @@ jobs:
       - run: echo ${{steps.release_notes.outputs.toTag}}
       - run: echo ${{steps.release_notes.outputs.changed_files}}
       - run: echo ${{steps.release_notes.outputs.changes}}
-      - run: echo ${{steps.release_notes.outputs.changelog}}
+      # - run: echo ${{steps.release_notes.outputs.changelog}}
       - run: ls -l
   #   - uses: actions/setup-node@v3
   #     with:
