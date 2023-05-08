@@ -24,6 +24,12 @@ jobs:
         run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
       - name: Checkout release branch
         run: git checkout -b release/${{ env.RELEASE_VERSION }} develop # TODO remove hardcoding and get default branch
+      - name: Create CHANGELOG_new
+        run: echo ${{ env.RELEASE_VERSION }} > CHANGELOG_new.md
+      - name: Add release to CHANGELOG.md
+        run: cat CHANGELOG_new.md CHANGELOG.md > CHANGELOG.md
+      - name: Add CHANGELOG.md to git
+        run: git commit -am "Change log"
       - name: Push release branch
         run: git push origin release/${{ env.RELEASE_VERSION }}
       
