@@ -64,7 +64,7 @@ jobs:
       - run: echo ${{ env.TEST2 }}
       - uses: mikepenz/release-changelog-builder-action@main
         with:
-          fromTag: "1.0.0"
+          fromTag: "v1.0.0"
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
