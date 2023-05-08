@@ -91,6 +91,7 @@ jobs:
       - run: echo ${{steps.release_notes.outputs.changes}}
       # - run: echo ${{steps.release_notes.outputs.changelog}}
       - run: ls -l
+      - run: cat CHANGELOG.md
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
