@@ -64,8 +64,8 @@ jobs:
       - run: echo ${{ env.TEST2 }}
       - uses: mikepenz/release-changelog-builder-action@main
         id: release_notes
-        # with:
-        #   toTag: "v1.0.0"
+        with:
+          toTag: "1.0.0"
       - run: echo ${{steps.release_notes.outputs.changelog}}
   #   - uses: actions/setup-node@v3
   #     with:
