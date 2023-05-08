@@ -70,6 +70,10 @@ jobs:
           fromTag: "v1.0.0"
           toTag: "main"
           commitMode: true
+      - name: Create Release
+        uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
+        with:
+          body: ${{steps.release_notes.outputs.changelog}}
       - run: echo ${{steps.release_notes.outputs.fromTag}}
       - run: echo ${{steps.release_notes.outputs.toTag}}
       - run: echo ${{steps.release_notes.outputs.changed_files}}
