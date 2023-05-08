@@ -69,6 +69,10 @@ jobs:
           toTag: "main"
       - run: echo ${{steps.release_notes.outputs.fromTag}}
       - run: echo ${{steps.release_notes.outputs.toTag}}
+      - run: echo ${{steps.release_notes.outputs.changed_files}}
+      - run: echo ${{steps.release_notes.outputs.changes}}
+      - run: echo ${{steps.release_notes.outputs.changes}}
+      - run: echo ${{steps.release_notes.outputs.changelog}}
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
