@@ -65,7 +65,7 @@ jobs:
       - uses: mikepenz/release-changelog-builder-action@main
         id: release_notes
         with:
-          fromTag: "v1.0.0"
+          fromTag: "1.0.0"
           toTag: "main"
       - run: echo ${{steps.release_notes.outputs.changelog}}
   #   - uses: actions/setup-node@v3
