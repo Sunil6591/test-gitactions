@@ -25,7 +25,9 @@ jobs:
       - name: Checkout release branch
         run: git checkout -b release/${{ env.RELEASE_VERSION }} develop # TODO remove hardcoding and get default branch
       - name: Create CHANGELOG_new
-        run: echo ${{ env.RELEASE_VERSION }} > CHANGELOG_new.md
+        run: |
+          echo "# ${{ env.RELEASE_VERSION }}" > CHANGELOG_new.md
+          echo "*PR1*" >> CHANGELOG_new.md
       - name: Add release to CHANGELOG.md
         run: |
           cat CHANGELOG.md > CHANGELOG_old.md
