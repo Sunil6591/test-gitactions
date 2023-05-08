@@ -1,0 +1,24 @@
+name: Create release
+on:
+  workflow_dispatch:
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: '10'
+          cache: 'npm'
+      - name: Dump package version
+        run: npm version minor
+      - name: Get release version
+        run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
+      - name: Checkout release branch
+        run: git checkout -b release/${{ env.RELEASE_VERSION }} develop # TODO remove hardcoding and get default branch
+      - name: Push release branch
+        run: git push origin release/${{ env.RELEASE_VERSION }}
+      
+      
