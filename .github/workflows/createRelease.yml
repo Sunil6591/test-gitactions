@@ -40,11 +40,11 @@ jobs:
         run: git commit -am "Change log"
       - name: Push release branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
         run: git push origin release/${{ env.RELEASE_VERSION }}
       - name: Create pre-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
         run: gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target release/${{ env.RELEASE_VERSION }}
           
       
