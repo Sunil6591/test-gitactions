@@ -27,7 +27,7 @@ jobs:
       - name: Checkout release branch
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
-        run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
+        run: git checkout -b release/${{ env.RELEASE_VERSION }} develop # TODO remove hardcoding and get default branch
       - name: Create CHANGELOG_new
         run: |
           echo "# ${{ env.RELEASE_VERSION }}" > CHANGELOG_new.md
