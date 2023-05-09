@@ -20,27 +20,29 @@ jobs:
       #   run: |
       #     git config user.name "Sunil Joshi"
       #     git config user.email "sunil.joshi@airfi.aero"
-      # - name: Dump package version
-      #   run: npm version minor
-      # - name: Get release version
-      #   run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
-      # - name: Checkout release branch
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
-      #   run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
-      # - name: Create CHANGELOG_new
-      #   run: |
-      #     echo "# ${{ env.RELEASE_VERSION }}" > CHANGELOG_new.md
-      #     echo "*PR1*" >> CHANGELOG_new.md
-      # - name: Add release to CHANGELOG.md
-      #   run: |
-      #     cat CHANGELOG.md > CHANGELOG_old.md
-      #     cat CHANGELOG_new.md CHANGELOG_old.md > CHANGELOG.md
-      # - name: Add CHANGELOG.md to git
-      #   run: git commit -am "Change log"
+      - name: Dump package version
+        run: npm version minor
+      - name: Get release version
+        run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
+      - name: Checkout release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
+        run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
+      - name: Create CHANGELOG_new
+        run: |
+          echo "# ${{ env.RELEASE_VERSION }}" > CHANGELOG_new.md
+          echo "*PR1*" >> CHANGELOG_new.md
+      - name: Add release to CHANGELOG.md
+        run: |
+          cat CHANGELOG.md > CHANGELOG_old.md
+          cat CHANGELOG_new.md CHANGELOG_old.md > CHANGELOG.md
+      - name: Add CHANGELOG.md to git
+        run: git commit -am "Change log"
       - name: Push release branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create v1.16.0 --generate-notes --target develop
+        run: |
+          gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target develop --prerelease
+          git push origin release/${{ env.RELEASE_VERSION }}
       
       
