@@ -1,6 +1,8 @@
 name: Create release
 on:
   workflow_dispatch:
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   create-release:
     runs-on: ubuntu-latest
