@@ -3,16 +3,16 @@ on:
   push: # TODO instead have it on https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#release
     branches:
       - 'release/**'
-  workflow_dispatch:
-    inputs:
-      iata:
-        description: 'IATA'
-        required: true
-      onlyForBox:
-        description: 'Only for box'
-        type: boolean
-        default: false
-        required: true
+  # workflow_dispatch:
+  #   inputs:
+  #     iata:
+  #       description: 'IATA'
+  #       required: true
+  #     onlyForBox:
+  #       description: 'Only for box'
+  #       type: boolean
+  #       default: false
+  #       required: true
 env:
   ENV1: ${{ secrets.TEST }}
   ENV2: ${{ vars.TEST2 }}
