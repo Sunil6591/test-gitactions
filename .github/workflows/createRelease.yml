@@ -16,15 +16,17 @@ jobs:
         with:
           node-version: '10'
           cache: 'npm'
-      - name: setup git config
-        run: |
-          git config user.name "Sunil Joshi"
-          git config user.email "sunil.joshi@airfi.aero"
+      # - name: setup git config
+      #   run: |
+      #     git config user.name "Sunil Joshi"
+      #     git config user.email "sunil.joshi@airfi.aero"
       # - name: Dump package version
       #   run: npm version minor
       # - name: Get release version
       #   run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
       - name: Checkout release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
       # - name: Create CHANGELOG_new
       #   run: |
@@ -37,6 +39,8 @@ jobs:
       # - name: Add CHANGELOG.md to git
       #   run: git commit -am "Change log"
       - name: Push release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push origin release/1.7.0
       
       
