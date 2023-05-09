@@ -64,8 +64,6 @@ jobs:
       zipFileName: ${{ steps.zipFileName.outputs.build }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_PAT_TOKEN }}
       - run: echo ${{ env.TEST }}
       - run: echo ${{ env.TEST2 }}
       - uses: mikepenz/release-changelog-builder-action@v3
