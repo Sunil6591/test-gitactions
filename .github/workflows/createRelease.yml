@@ -26,7 +26,7 @@ jobs:
       #   run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
       - name: Checkout release branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
         run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
       # - name: Create CHANGELOG_new
       #   run: |
@@ -40,7 +40,7 @@ jobs:
       #   run: git commit -am "Change log"
       - name: Push release branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
         run: git push origin release/1.7.0
       
       
