@@ -16,11 +16,11 @@ jobs:
       #   with:
       #     node-version: '10'
       #     cache: 'npm'
-      # - name: setup git config
-      #   run: |
-      #     git config user.name "Sunil Joshi"
-      #     git config user.email "sunil.joshi@airfi.aero"
-      - name: Dump package version
+      - name: setup git config
+        run: |
+          git config user.name "Sunil Joshi"
+          git config user.email "sunil.joshi@airfi.aero"
+      - name: Bump package version
         run: npm version minor
       - name: Get release version
         run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
