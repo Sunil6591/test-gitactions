@@ -41,9 +41,11 @@ jobs:
       - name: Push release branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin release/${{ env.RELEASE_VERSION }}
-          gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target develop --prerelease
+        run: git push origin release/${{ env.RELEASE_VERSION }}
+      - name: Create pre-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target develop --prerelease
           
       
       
