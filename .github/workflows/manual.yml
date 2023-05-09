@@ -1,5 +1,8 @@
 name: IATA manual deployment
 on:
+  push: # TODO instead have it on https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#release
+    branches:
+      - 'release/**'
   workflow_dispatch:
     inputs:
       iata:
