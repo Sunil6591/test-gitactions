@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: '10'
-          cache: 'npm'
+      # - name: Install nodejs
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '10'
+      #     cache: 'npm'
       # - name: setup git config
       #   run: |
       #     git config user.name "Sunil Joshi"
@@ -24,10 +24,10 @@ jobs:
       #   run: npm version minor
       # - name: Get release version
       #   run: echo "RELEASE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')" >> $GITHUB_ENV
-      - name: Checkout release branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
-        run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
+      # - name: Checkout release branch
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
+      #   run: git checkout -b release/1.7.0 develop # TODO remove hardcoding and get default branch
       # - name: Create CHANGELOG_new
       #   run: |
       #     echo "# ${{ env.RELEASE_VERSION }}" > CHANGELOG_new.md
@@ -40,7 +40,7 @@ jobs:
       #   run: git commit -am "Change log"
       - name: Push release branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
-        run: git push origin release/1.7.0
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create v1.7.0 --generate-notes
       
       
