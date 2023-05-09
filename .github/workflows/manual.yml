@@ -1,7 +1,7 @@
 name: IATA manual deployment
 on:
   release:
-    types: [published]
+    types: [published, unpublished, prereleased, created]
   # workflow_dispatch:
   #   inputs:
   #     iata:
