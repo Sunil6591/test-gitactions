@@ -45,7 +45,7 @@ jobs:
       - name: Create pre-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
-        run: gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target release/${{ env.RELEASE_VERSION }}
+        run: gh release create v${{ env.RELEASE_VERSION }} --generate-notes --target release/${{ env.RELEASE_VERSION }} --prerelease
           
       
       
