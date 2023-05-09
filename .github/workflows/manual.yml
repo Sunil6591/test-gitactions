@@ -1,5 +1,5 @@
 name: IATA manual deployment
-on:
+on: []
   push: # TODO instead have it on https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#release
     branches:
       - 'release/**'
@@ -64,6 +64,8 @@ jobs:
       zipFileName: ${{ steps.zipFileName.outputs.build }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
       - run: echo ${{ env.TEST }}
       - run: echo ${{ env.TEST2 }}
       - uses: mikepenz/release-changelog-builder-action@v3
