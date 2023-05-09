@@ -16,8 +16,8 @@ jobs:
           cache: 'npm'
       - name: setup git config
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          git config user.name "Sunil Joshi"
+          git config user.email "sunil.joshi@airfi.aero"
       - name: Dump package version
         run: npm version minor
       - name: Get release version
