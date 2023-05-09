@@ -41,6 +41,6 @@ jobs:
       - name: Push release branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create v1.15.0 --generate-notes --target develop
+        run: gh release create v1.16.0 --generate-notes --target develop
       
       
