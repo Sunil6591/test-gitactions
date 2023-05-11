@@ -18,18 +18,27 @@ env:
   VERSION: 1.0.0
 jobs:
   build:
-    # name: Building for ${{ inputs.iata }} 
-    # runs-on: ubuntu-latest
-    # outputs:
-    #   filename: ${{ steps.zipping.outputs.filename }}
-    #   s3Path: ${{ steps.deploy_s3.outputs.s3Path }}
-    # steps:
-    # - uses: actions/checkout@v3
-    # - uses: actions/setup-node@v3
-    #   with:
-    #     node-version: '10'
-    #     cache: 'npm'
-    # - run: npm ci
+    name: Building for ${{ inputs.iata }} 
+    runs-on: ubuntu-latest
+    outputs:
+      filename: ${{ steps.zipping.outputs.filename }}
+      s3Path: ${{ steps.deploy_s3.outputs.s3Path }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '10'
+    - name: Cache dependencies
+      id: cache-deps
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.npm
+          ${{ github.workspace }}/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+    - run: npm ci
     # - run: npm test
     # - run: npm run build
     # - run: mkdir -p dist/node_modules
@@ -57,44 +66,44 @@ jobs:
     # - run: echo "filename=$(echo '${{ github.repository }}' | awk -F/ '{print $NF}')" >> $GITHUB_OUTPUT
     # - id: 'deploy_s3'
     #   run: echo "s3Path=s3//test.zip" >> $GITHUB_OUTPUT
-    runs-on: ubuntu-latest
-    outputs:
-      packageVersion: ${{ steps.version.outputs.build }}
-      zipFileName: ${{ steps.zipFileName.outputs.build }}
-    steps:
-      - uses: actions/checkout@v3
-      - run: echo ${{ env.TEST }}
-      - run: echo ${{ env.TEST2 }}
-      - uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: release_notes
-        with:
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}}\n\n#{{UNCATEGORIZED}}",
-              "categories": [
-                {
-                    "title": "## 💬 Other",
-                    "labels": ["other"]
-                },
-                {
-                    "title": "## 📦 Dependencies",
-                    "labels": ["dependencies"]
-                }
-              ]
-            }
-          fromTag: v${{ env.VERSION }}
-          toTag: "main"
-          commitMode: true
-          outputFile: CHANGELOG.md
-      - run: echo ${{steps.release_notes.outputs.fromTag}}
-      - run: echo ${{steps.release_notes.outputs.toTag}}
-      - run: echo ${{steps.release_notes.outputs.changed_files}}
-      - run: echo ${{steps.release_notes.outputs.changes}}
-      # - run: echo ${{steps.release_notes.outputs.changelog}}
-      - run: ls -l
-      - run: cat CHANGELOG.md
+    # runs-on: ubuntu-latest
+    # outputs:
+    #   packageVersion: ${{ steps.version.outputs.build }}
+    #   zipFileName: ${{ steps.zipFileName.outputs.build }}
+    # steps:
+    #   - uses: actions/checkout@v3
+    #   - run: echo ${{ env.TEST }}
+    #   - run: echo ${{ env.TEST2 }}
+    #   - uses: mikepenz/release-changelog-builder-action@v3
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     id: release_notes
+    #     with:
+    #       configurationJson: |
+    #         {
+    #           "template": "#{{CHANGELOG}}\n\n#{{UNCATEGORIZED}}",
+    #           "categories": [
+    #             {
+    #                 "title": "## 💬 Other",
+    #                 "labels": ["other"]
+    #             },
+    #             {
+    #                 "title": "## 📦 Dependencies",
+    #                 "labels": ["dependencies"]
+    #             }
+    #           ]
+    #         }
+    #       fromTag: v${{ env.VERSION }}
+    #       toTag: "main"
+    #       commitMode: true
+    #       outputFile: CHANGELOG.md
+    #   - run: echo ${{steps.release_notes.outputs.fromTag}}
+    #   - run: echo ${{steps.release_notes.outputs.toTag}}
+    #   - run: echo ${{steps.release_notes.outputs.changed_files}}
+    #   - run: echo ${{steps.release_notes.outputs.changes}}
+    #   # - run: echo ${{steps.release_notes.outputs.changelog}}
+    #   - run: ls -l
+    #   - run: cat CHANGELOG.md
   #   - uses: actions/setup-node@v3
   #     with:
   #       node-version: '10'
