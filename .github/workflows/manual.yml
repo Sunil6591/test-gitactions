@@ -2,16 +2,16 @@ name: IATA manual deployment
 on:
   release:
     types: [prereleased]
-  # workflow_dispatch:
-  #   inputs:
-  #     iata:
-  #       description: 'IATA'
-  #       required: true
-  #     onlyForBox:
-  #       description: 'Only for box'
-  #       type: boolean
-  #       default: false
-  #       required: true
+  workflow_dispatch:
+    inputs:
+      iata:
+        description: 'IATA'
+        required: true
+      onlyForBox:
+        description: 'Only for box'
+        type: boolean
+        default: false
+        required: true
 env:
   ENV1: ${{ secrets.TEST }}
   ENV2: ${{ vars.TEST2 }}
